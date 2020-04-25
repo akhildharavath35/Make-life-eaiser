@@ -1,0 +1,61 @@
+<%- include("header") -%>
+
+
+<%
+
+
+
+function getTime() {
+  var time = "";
+  var d = new Date()
+  var hours = d.getHours();
+  var shours = hours.toString()
+  var minutes = d.getMinutes();
+  var sminutes = minutes.toString()
+  if ((sminutes+'').length == 1) {
+      sminutes = "0" + sminutes;
+  }
+  else if ((shours+'').length == 1)
+  {
+      shours = "0" + shours;
+  }
+  return time.concat(shours,":",sminutes)
+}
+ %>
+
+ <div class="box1" id="heading1">
+  <h1 style="color: black; opacity: 0.5; font-weight: 600;"> <%= getTime() %> </h1>
+  </div>
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+
+    <% newListItems.forEach(function(Item){%>
+      <form class="item" action="/remove" method="post">
+        <div class="item" name="Item" >
+          <input type="checkbox" name="checkbox" value="<%= Item._id %>" onChange="this.form.submit()">
+          <p><%=  Item.name  %></p>
+          <input  type="hidden" name ="list" value="<%= listTitle  %>"></input>
+        </div>
+      </form>
+    <%})%>
+
+<!--     <% for (let i=0; i<newListItems.length; i++) { %>
+      <form class="item" action="/remove" method="post">
+        <div class="item" name="Item" >
+          <input type="checkbox" value="<%=  newListItems[i]._id %>" onChange="this.form.submit()">
+          <p><%=  newListItems[i]._id  %></p>
+        </div>
+      </form>
+      <% } %> -->
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="listname" value="<%= listTitle %>">+</button>
+      </form>
+  </div>
+
+<%- include("footer") -%>
