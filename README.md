@@ -1,3 +1,3 @@
 # Make-life-eaiser
 
-#ProjectUrl : "https://make-life-eaiser.herokuapp.com/"
+ProjectUrl : "https://make-life-eaiser.herokuapp.com/"
